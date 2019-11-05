@@ -36,7 +36,7 @@ Open this README.md in your browser by visiting [readme.docker.localhost/](http:
 
 ### How does it work?
 
-Traefik connects to the Docker Daemon to read labels from running containers. All containers that are connected to the network `traefik-playground_traefik_proxy` are also reachable from the Traefik container. Traefik is able to reverse proxy requests based on the lables assigned to docker containers. 
+Traefik connects to the Docker Daemon to read labels from running containers. All containers that are connected to the network `traefik-playground_default` are also reachable from the Traefik container. Traefik is able to reverse proxy requests based on the lables assigned to docker containers. 
 
 If your working directory from where you executed `docker-compose up` is not `traefik-playground` the network name is different. 
 
@@ -52,7 +52,7 @@ Run the project container:
 docker run \
     --name some-project \
     -d \
-    --network codeandship-traefik_traefik_proxy \
+    --network traefik-playground_default \
     -l "traefik.http.routers.project.rule=Host(\`project.docker.localhost\`)" \
     someimage
 ```
