@@ -1,0 +1,11 @@
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    network: traefik_proxy
+  file:
+    filename: dynamic_conf.yml
+    watch: true
+log:
+  level: DEBUG
+api:
+  dashboard: true
