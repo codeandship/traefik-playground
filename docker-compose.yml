@@ -2,8 +2,6 @@ version: "3.3"
 services:
   traefik:
     image: traefik:latest
-    networks:
-      - traefik_proxy
     ports:
       - "80:80"
     volumes:
@@ -14,8 +12,6 @@ services:
     image: nginx:latest
     labels:
       - traefik.http.routers.web.rule=Host(`web.docker.localhost`)
-    networks:
-      - traefik_proxy
     volumes:
       - ./web/index.html:/usr/share/nginx/html/index.html:ro
       - ./web/favicon.ico:/usr/share/nginx/html/favicon.ico:ro
@@ -23,11 +19,6 @@ services:
     image: nginx:latest
     labels:
       - traefik.http.routers.readme.rule=Host(`readme.docker.localhost`)
-    networks:
-      - traefik_proxy
     volumes:
       - ./web/readme.html:/usr/share/nginx/html/index.html:ro
       - ./web/favicon.ico:/usr/share/nginx/html/favicon.ico:ro
-networks: 
-  traefik_proxy:
-    external: true
