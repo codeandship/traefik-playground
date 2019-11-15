@@ -446,7 +446,7 @@
 <p>This is a local playground to help you get started with Traefik. If you speak German listen to our Episode where we talk about this setup and discuss Traefik.</p>
 <p>You can use this setup to experiment with Traefik and also easily host services on your machine without remembering lots of ports. Domain names are much more intuitive. Also your browser will help you auto-complete domains better than port numbers.</p>
 <h1 id="clone">Clone</h1>
-<pre><code>git clone
+<pre><code>git clone https://github.com/codeandship/traefik-playground.git
 cd traefik-playground</code></pre>
 <h1 id="edit-your-etchosts-file">Edit your /etc/hosts file</h1>
 <p><code>sudo nano /etc/hosts</code></p>
@@ -459,7 +459,7 @@ cd traefik-playground</code></pre>
 <pre><code>docker-compose up</code></pre>
 <p>Open this README.md in your browser by visiting <a href="http://readme.docker.localhost/">readme.docker.localhost/</a> or visit the <a href="http://traefik.docker.localhost/dashboard/">Traefik Dasboard</a> (user: <code>test</code>, password: <code>test</code>). There is also <a href="http://web.docker.localhost/">web.docker.localhost</a>.</p>
 <h3 id="how-does-it-work">How does it work?</h3>
-<p>Traefik connects to the Docker Daemon to read labels from running containers. All containers that are connected to the network <code>traefik-playground_traefik_proxy</code> are also reachable from the Traefik container. Traefik is able to reverse proxy requests based on the lables assigned to docker containers.</p>
+<p>Traefik connects to the Docker Daemon to read labels from running containers. All containers that are connected to the network <code>traefik-playground_default</code> are also reachable from the Traefik container. Traefik is able to reverse proxy requests based on the lables assigned to docker containers.</p>
 <p>If your working directory from where you executed <code>docker-compose up</code> is not <code>traefik-playground</code> the network name is different.</p>
 <h1 id="adding-a-container-domain">Adding a container / domain</h1>
 <p>You can either edit the <code>docker-compose.yml</code> file inside this repository or connect a container to the proxy network. Either way you have to tell Traefik via lables how to serve the web port of this container.</p>
@@ -468,7 +468,7 @@ cd traefik-playground</code></pre>
 <pre><code>docker run \
     --name some-project \
     -d \
-    --network codeandship-traefik_traefik_proxy \
+    --network traefik-playground_default \
     -l &quot;traefik.http.routers.project.rule=Host(\`project.docker.localhost\`)&quot; \
     someimage</code></pre>
 <p>Open <a href="http://project.docker.localhost">project.docker.localhost</a></p>

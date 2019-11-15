@@ -8,7 +8,7 @@ You can use this setup to experiment with Traefik and also easily host services 
 # Clone
 
 ```
-git clone
+git clone https://github.com/codeandship/traefik-playground.git
 cd traefik-playground
 ```
 
